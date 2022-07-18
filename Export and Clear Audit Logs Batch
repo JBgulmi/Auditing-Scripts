@@ -1,0 +1,22 @@
+#### Making Directories #### 
+MD "[insert chosen folder]\%date:~-4,4%%date:~-10,2%%date:~7,2%" [Make a directory with today’s date]
+
+[This section exports the System, Security, Application, and Print\operational logs named with today’s date and puts them in the root of the chosen folder]
+Echo #### Copying logs ####   
+C:\windows\system32\wevtutil.exe epl System "[insert chosen folder]\system%date:~-4,4%%date:~-10,2%%date:~7,2%.evt"
+ 
+C:\windows\system32\wevtutil.exe epl Security "[insert chosen folder]%date:~-4,4%%date:~-10,2%%date:~7,2%.evt"
+ 
+C:\windows\system32\wevtutil.exe epl Application "[insert chosen folder]\application%date:~-4,4%%date:~-10,2%%date:~7,2%.evt"
+ 
+C:\windows\system32\wevtutil.exe epl Microsoft-Windows-PrintService/Operational "[insert chosen folder]\Printlog%date:~-4,4%%date:~-10,2%%date:~7,2%.evt" [if you don’t want to clear print logs, remove this line]
+
+[This section clears the logs (have not fully tested on my live system)]
+
+C:\windows\system32\wevtutil.exe cl System 
+ 
+C:\windows\system32\wevtutil.exe cl Security 
+ 
+C:\windows\system32\wevtutil.exe cl Application 
+ 
+C:\windows\system32\wevtutil.exe cl Microsoft-Windows-PrintService/Operational [if you don’t want to clear print logs, remove this line]
